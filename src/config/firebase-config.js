@@ -7,7 +7,14 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-  //put your onws firebase keys here
+const firebaseConfig = {
+  apiKey: "AIzaSyA7PFMWtknOvU7_lWvj5FOgeeI-M_n4bAo",
+  authDomain: "docs-clone-488f2.firebaseapp.com",
+  projectId: "docs-clone-488f2",
+  storageBucket: "docs-clone-488f2.firebasestorage.app",
+  messagingSenderId: "998590469822",
+  appId: "1:998590469822:web:a791a4cdddeb196c0570ef"
+};
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

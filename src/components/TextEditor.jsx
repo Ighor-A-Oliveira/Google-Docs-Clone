@@ -4,7 +4,6 @@ import {setDoc, doc, getDoc, onSnapshot} from "firebase/firestore"
 import { db } from "../config/firebase-config"
 import "react-quill/dist/quill.snow.css";
 import "../App.css";
-import { throttle } from "lodash";
 
 export default function TextEditor() {
   const quillRef = useRef(null)
@@ -20,16 +19,14 @@ export default function TextEditor() {
 
   //Saving our local changes to the db
   function saveContent() {
-    throttle(() => {
-      if (quillRef.current && isLocalChange.current) {
-        const content = quillRef.current.getEditor().getContents();
-        console.log("Saving content to Firestore:", content);
-        setDoc(documentRef, { content: content.ops }, { merge: true })
-          .then(() => console.log("Content saved successfully"))
-          .catch(console.error);
-        isLocalChange.current = false; // Reset local change flag after saving
-      }
-    }, 1000);
+    if (quillRef.current && isLocalChange.current) {
+      const content = quillRef.current.getEditor().getContents();
+      console.log("Saving content to Firestore:", content);
+      setDoc(documentRef, { content: content.ops }, { merge: true })
+        .then(() => console.log("Content saved successfully"))
+        .catch(console.error);
+      isLocalChange.current = false; // Reset local change flag after saving
+    }
   }
   
 

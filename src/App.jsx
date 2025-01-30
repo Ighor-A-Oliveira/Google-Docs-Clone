@@ -5,7 +5,7 @@ import TextEditor from './components/TextEditor';
 
 
 function App() {
-
+  
 //authentication
   useEffect(() => {
     //user will get an anonymous id

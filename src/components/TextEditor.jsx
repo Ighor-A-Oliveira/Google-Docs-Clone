@@ -24,7 +24,10 @@ export default function TextEditor() {
       console.log("Saving content to Firestore:", content);
       setDoc(documentRef, { content: content.ops }, { merge: true })
         .then(() => console.log("Content saved successfully"))
-        .catch(console.error);
+        .catch(error => {
+          console.error("Error saving content:", error.message);
+          console.error("Error code:", error.code);
+        });
       isLocalChange.current = false; // Reset local change flag after saving
     }
   }
